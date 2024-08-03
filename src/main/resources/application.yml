@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: biblioteca
+          uri: http://java-assessment:8081
+          predicates:
+            - Path=/libros/**
+        - id: usuarios
+          uri: http://java-assessment:8081
+          predicates:
+            - Path=/usuarios/**
+        - id: auth
+          uri: http://java-assessment:8081
+          predicates:
+            - Path=/auth/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
